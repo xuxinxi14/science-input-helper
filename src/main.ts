@@ -64,13 +64,13 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
   onunload(): void {
     this.quickInput?.close();
-    this.app.workspace.detachLeavesOfType(VIEW_TYPE_SCIENCE_PANEL);
   }
 
   async loadSettings(): Promise<void> {
+    const data = (await this.loadData()) as Partial<ScienceInputHelperSettings> | null;
     this.settings = {
       ...DEFAULT_SETTINGS,
-      ...(await this.loadData())
+      ...(data ?? {})
     };
   }
 
@@ -103,7 +103,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
     const existingLeaf = this.app.workspace.getLeavesOfType(VIEW_TYPE_SCIENCE_PANEL)[0];
 
     if (existingLeaf) {
-      this.app.workspace.revealLeaf(existingLeaf);
+      this.app.workspace.setActiveLeaf(existingLeaf, { focus: true });
       return;
     }
 
@@ -117,19 +117,13 @@ export default class ScienceInputHelperPlugin extends Plugin {
       type: VIEW_TYPE_SCIENCE_PANEL,
       active: true
     });
-    this.app.workspace.revealLeaf(leaf);
+    this.app.workspace.setActiveLeaf(leaf, { focus: true });
   }
 
   private addCommands(): void {
     this.addCommand({
       id: "toggle-science-input-mode",
-      name: "Science Input Helper: Toggle quick input",
-      hotkeys: [
-        {
-          modifiers: ["Ctrl", "Shift"],
-          key: "Q"
-        }
-      ],
+      name: "Toggle quick input",
       editorCallback: (editor) => {
         this.quickInput?.toggle(editor);
       }
@@ -137,7 +131,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "toggle-science-input-focus",
-      name: "Science Input Helper: Toggle quick input focus",
+      name: "Toggle quick input focus",
       callback: () => {
         this.quickInput?.toggleFocus();
       }
@@ -145,7 +139,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "open-science-panel",
-      name: "Science Input Helper: Open Science Panel",
+      name: "Open Science Panel",
       callback: () => {
         void this.activatePanel();
       }
@@ -153,7 +147,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "convert-chemical-inline",
-      name: "Science Input Helper: Convert chemical formula to inline math",
+      name: "Convert chemical formula to inline math",
       editorCallback: (editor) => {
         this.convertSelectionOrPrompt(
           editor,
@@ -168,7 +162,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "convert-chemical-block",
-      name: "Science Input Helper: Convert chemical formula to block math",
+      name: "Convert chemical formula to block math",
       editorCallback: (editor) => {
         this.convertSelectionOrPrompt(
           editor,
@@ -183,7 +177,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "format-unit-inline",
-      name: "Science Input Helper: Format unit to inline math",
+      name: "Format unit to inline math",
       editorCallback: (editor) => {
         this.convertSelectionOrPrompt(
           editor,
@@ -198,7 +192,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "format-unit-block",
-      name: "Science Input Helper: Format unit to block math",
+      name: "Format unit to block math",
       editorCallback: (editor) => {
         this.convertSelectionOrPrompt(
           editor,
@@ -211,23 +205,23 @@ export default class ScienceInputHelperPlugin extends Plugin {
       }
     });
 
-    this.addTemplateCommand("search-template-inline", "Science Input Helper: Search template and insert inline math", "inline");
-    this.addTemplateCommand("search-template-block", "Science Input Helper: Search template and insert block math", "block");
+    this.addTemplateCommand("search-template-inline", "Search template and insert inline math", "inline");
+    this.addTemplateCommand("search-template-block", "Search template and insert block math", "block");
     this.addTemplateCommand(
       "search-physics-template",
-      "Science Input Helper: Search physics formula template",
+      "Search physics formula template",
       "default",
       "physics"
     );
     this.addTemplateCommand(
       "search-chemistry-template",
-      "Science Input Helper: Search chemistry formula template",
+      "Search chemistry formula template",
       "default",
       "chemistry"
     );
     this.addTemplateCommand(
       "search-biochemistry-template",
-      "Science Input Helper: Search biochemistry expression template",
+      "Search biochemistry expression template",
       "default",
       "biochemistry"
     );
@@ -238,7 +232,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
   private addMathStructureCommands(): void {
     this.addCommand({
       id: "wrap-selection-sqrt",
-      name: "Science Input Helper: Wrap selection with square root",
+      name: "Wrap selection with square root",
       editorCallback: (editor) => {
         replaceSelectionWithGenerated(editor, (selection) => {
           const text = wrapWithSqrt(selection);
@@ -252,7 +246,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "wrap-selection-nth-root",
-      name: "Science Input Helper: Wrap selection with nth root",
+      name: "Wrap selection with nth root",
       editorCallback: (editor) => {
         replaceSelectionWithGenerated(editor, (selection) => {
           const text = wrapWithNthRoot(selection, "n");
@@ -266,7 +260,7 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "wrap-selection-fraction-numerator",
-      name: "Science Input Helper: Wrap selection as fraction numerator",
+      name: "Wrap selection as fraction numerator",
       editorCallback: (editor) => {
         replaceSelectionWithGenerated(editor, (selection) => {
           const text = `\\frac{${selection}}{}`;
@@ -280,13 +274,13 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addCommand({
       id: "convert-slash-expression-to-fraction",
-      name: "Science Input Helper: Convert slash expression to fraction",
+      name: "Convert slash expression to fraction",
       editorCallback: (editor) => {
         const selected = editor.getSelection();
         const converted = convertSlashToFraction(selected);
 
         if (!selected.trim() || !converted) {
-          new Notice("请先选中形如 A / B 的表达式。");
+          new Notice("请先选中形如 a / b 的表达式。");
           return;
         }
 
@@ -296,55 +290,55 @@ export default class ScienceInputHelperPlugin extends Plugin {
 
     this.addMathUnaryCommand(
       "wrap-selection-parentheses",
-      "Science Input Helper: Wrap selection with parentheses",
+      "Wrap selection with parentheses",
       wrapWithParentheses,
       (text) => cursorBeforeRightDelimiter(text)
     );
     this.addMathUnaryCommand(
       "wrap-selection-brackets",
-      "Science Input Helper: Wrap selection with brackets",
+      "Wrap selection with brackets",
       wrapWithBrackets,
       (text) => cursorBeforeRightDelimiter(text)
     );
     this.addMathUnaryCommand(
       "wrap-selection-braces",
-      "Science Input Helper: Wrap selection with braces",
+      "Wrap selection with braces",
       wrapWithBraces,
       (text) => cursorBeforeRightDelimiter(text)
     );
     this.addMathUnaryCommand(
       "wrap-selection-absolute-value",
-      "Science Input Helper: Wrap selection with absolute value",
+      "Wrap selection with absolute value",
       wrapWithAbsoluteValue,
       (text) => cursorBeforeRightDelimiter(text)
     );
     this.addMathUnaryCommand(
       "wrap-selection-norm",
-      "Science Input Helper: Wrap selection with norm",
+      "Wrap selection with norm",
       wrapWithNorm,
       (text) => cursorBeforeRightDelimiter(text)
     );
     this.addMathUnaryCommand(
       "wrap-selection-vector",
-      "Science Input Helper: Wrap selection with vector",
+      "Wrap selection with vector",
       wrapWithVector,
       cursorInsideFirstEmptyBraces
     );
     this.addMathUnaryCommand(
       "wrap-selection-overrightarrow",
-      "Science Input Helper: Wrap selection with overrightarrow",
+      "Wrap selection with overrightarrow",
       wrapWithOverrightarrow,
       cursorInsideFirstEmptyBraces
     );
     this.addMathUnaryCommand(
       "wrap-selection-superscript",
-      "Science Input Helper: Wrap selection as superscript",
+      "Wrap selection as superscript",
       wrapAsSuperscript,
       cursorInsideFirstEmptyBraces
     );
     this.addMathUnaryCommand(
       "wrap-selection-subscript",
-      "Science Input Helper: Wrap selection as subscript",
+      "Wrap selection as subscript",
       wrapAsSubscript,
       cursorInsideFirstEmptyBraces
     );

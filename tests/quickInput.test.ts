@@ -23,6 +23,8 @@ describe("parseQuickInput", () => {
     expect(parseQuickInput("单位 0.1mol/L").latex).toBe("0.1\\,\\mathrm{mol/L}");
     expect(parseQuickInput("单位 6.02e23 mol-1").latex).toBe("6.02\\times10^{23}\\,\\mathrm{mol^{-1}}");
     expect(parseQuickInput("物 动能").latex).toBe("E_k=\\frac{1}{2}mv^2");
+    expect(parseQuickInput("物 动量").latex).toBe("p=mv");
+    expect(parseQuickInput("物 自由落体").latex).toBe("v=gt,\\ h=\\frac{1}{2}gt^2");
     expect(parseQuickInput("化学 pH").latex).toBe("\\mathrm{pH}=-\\lg[H^+]");
     expect(parseQuickInput("生化 ATP水解").latex).toBe("\\mathrm{ATP + H_2O \\rightarrow ADP + P_i + H^+}");
     expect(parseQuickInput("原 E=mc^2").latex).toBe("E=mc^2");

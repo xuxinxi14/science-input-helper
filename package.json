@@ -1,11 +1,12 @@
 {
   "name": "science-input-helper",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Obsidian helper for Chinese science notes: chemistry formulas, physics templates, units, and biochemistry expressions.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs watch",
     "build": "tsc -noEmit && node esbuild.config.mjs production",
+    "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -16,14 +17,17 @@
     "physics",
     "science-notes"
   ],
-  "author": "",
+  "author": "XinXi Xu",
   "license": "MIT",
   "devDependencies": {
     "@codemirror/state": "6.5.0",
     "@codemirror/view": "^6.38.6",
     "@types/node": "^24.10.1",
+    "@typescript-eslint/parser": "^8.60.1",
     "builtin-modules": "^5.0.0",
     "esbuild": "^0.27.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-obsidianmd": "^0.3.0",
     "obsidian": "^1.8.7",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3",

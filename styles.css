@@ -65,6 +65,7 @@
 .science-input-helper-quick-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
   margin-bottom: 8px;
   color: var(--text-muted);
@@ -74,6 +75,36 @@
 
 .science-input-helper-quick-header.is-draggable {
   cursor: move;
+}
+
+.science-input-helper-quick-title {
+  font-weight: 600;
+}
+
+.science-input-helper-quick-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.science-input-helper-quick-close:hover,
+.science-input-helper-quick-close:focus-visible {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
 }
 
 .science-input-helper-quick-input {

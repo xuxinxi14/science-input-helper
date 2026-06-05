@@ -44,7 +44,7 @@ export class QuickInputController {
       return;
     }
 
-    if (document.activeElement === this.inputEl) {
+    if (activeDocument.activeElement === this.inputEl) {
       this.editor.focus();
       this.statusEl.setText("Science Input: 正文");
       return;
@@ -59,11 +59,25 @@ export class QuickInputController {
     this.editor = editor;
     const selectedText = editor.getSelection().trim();
 
-    this.rootEl = document.body.createDiv({ cls: "science-input-helper-quick" });
+    this.rootEl = activeDocument.body.createDiv({ cls: "science-input-helper-quick" });
 
     const headerEl = this.rootEl.createDiv({ cls: "science-input-helper-quick-header" });
-    headerEl.createSpan({ text: "Science Input" });
-    headerEl.createSpan({ text: "Enter 插入 · Tab 候选 · Esc 退出" });
+    headerEl.createSpan({ cls: "science-input-helper-quick-title", text: "Science Input" });
+    const closeButton = headerEl.createEl("button", {
+      cls: "science-input-helper-quick-close",
+      text: "×",
+      attr: {
+        "aria-label": "关闭 Science Input",
+        title: "关闭"
+      }
+    });
+    closeButton.type = "button";
+    closeButton.addEventListener("mousedown", (event) => event.stopPropagation());
+    closeButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.close();
+    });
     this.enableDragging(headerEl);
 
     this.inputEl = this.rootEl.createEl("input", {
@@ -86,7 +100,7 @@ export class QuickInputController {
       this.renderPreview();
     });
     this.inputEl.addEventListener("keydown", (event) => this.handleKeyDown(event));
-    document.addEventListener("keydown", this.focusHotkeyHandler, true);
+    activeDocument.addEventListener("keydown", this.focusHotkeyHandler, true);
 
     this.statusEl.setText("Science Input: 输入框");
     this.statusEl.show();
@@ -97,7 +111,7 @@ export class QuickInputController {
   }
 
   close(): void {
-    document.removeEventListener("keydown", this.focusHotkeyHandler, true);
+    activeDocument.removeEventListener("keydown", this.focusHotkeyHandler, true);
     this.rootEl?.remove();
     this.rootEl = null;
     this.inputEl = null;
@@ -304,8 +318,8 @@ export class QuickInputController {
       };
 
       const onMouseUp = () => {
-        document.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseup", onMouseUp);
+        activeDocument.removeEventListener("mousemove", onMouseMove);
+        activeDocument.removeEventListener("mouseup", onMouseUp);
 
         if (!this.rootEl) {
           return;
@@ -318,8 +332,8 @@ export class QuickInputController {
         void this.plugin.saveSettings();
       };
 
-      document.addEventListener("mousemove", onMouseMove);
-      document.addEventListener("mouseup", onMouseUp);
+      activeDocument.addEventListener("mousemove", onMouseMove);
+      activeDocument.addEventListener("mouseup", onMouseUp);
     });
   }
 }

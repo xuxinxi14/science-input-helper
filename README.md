@@ -33,6 +33,30 @@ Science Input Helper 就是为这些场景做的。
 | `根号 b^2-4ac` | `\sqrt{b^2-4ac}` |
 | `分式 a+b / c+d` | `\frac{a+b}{c+d}` |
 
+## 功能汇总表
+
+| 类别 | 典型输入 | 插入结果 | 说明 |
+| --- | --- | --- | --- |
+| 化学式 | `化 H2SO4` | `\mathrm{H_2SO_4}` | 常见分子式下标 |
+| 化学计量数 | `化 2H2O` | `\mathrm{2H_2O}` | 保留反应式前置系数 |
+| 离子式 | `化 SO4 2-` | `\mathrm{SO_4^{2-}}` | 支持分离电荷写法 |
+| 有机简式 | `化 CH3COOH` | `\mathrm{CH_3COOH}` | 适合常见课程笔记简式 |
+| 结晶水 | `化 CuSO4·5H2O` | `\mathrm{CuSO_4\cdot 5H_2O}` | 支持中点结晶水写法 |
+| 可逆条件箭头 | `可逆[加热][浓硫酸]` | `\overset{\Delta}{\underset{\mathrm{浓硫酸}}{\rightleftharpoons}}` | 上方和下方条件 |
+| 生成条件箭头 | `生成[光照]` | `\xrightarrow{h\nu}` | 光照、加热、催化剂等条件 |
+| 简单完整反应 | `反应 2H2 + O2 生成[点燃] 2H2O` | `\mathrm{2H_2 + O_2} \xrightarrow{\mathrm{点燃}} \mathrm{2H_2O}` | 实验性线性反应式转换 |
+| 单位格式化 | `单位 9.8m/s2` | `9.8\,\mathrm{m/s^2}` | 只改变显示格式，不换算 |
+| 科学计数单位 | `单位 6.02e23 mol-1` | `6.02\times10^{23}\,\mathrm{mol^{-1}}` | 支持科学计数法和负幂 |
+| 物理模板 | `物 动能` | `E_k=\frac{1}{2}mv^2` | 中文关键词查常见公式 |
+| 物理模板 | `物 动量` | `p=mv` | 力学常用公式 |
+| 物理模板 | `物 自由落体` | `v=gt,\ h=\frac{1}{2}gt^2` | 运动学常用公式 |
+| 生化模板 | `生化 ATP水解` | `\mathrm{ATP + H_2O \rightarrow ADP + P_i + H^+}` | 常见生化表达式 |
+| 希腊字母 | `希 alpha` | `\alpha` 或 `α` | 输出取决于设置页模式 |
+| 罗马数字 | `罗马 12` | `XII` | 必须带前缀，不转换裸数字 |
+| 根号结构 | `根号 b^2-4ac` | `\sqrt{b^2-4ac}` | 快速生成根号 |
+| 分式结构 | `分式 a+b / c+d` | `\frac{a+b}{c+d}` | 按第一个 `/` 分割 |
+| 常用符号 | `约等于` | `\approx` | 关系、推理、反应符号 |
+
 ## 适合谁？
 
 这个插件更适合：
@@ -51,12 +75,14 @@ Science Input Helper 就是为这些场景做的。
 ## 30 秒快速上手
 
 1. 在 Obsidian 中启用 `Science Input Helper`。
-2. 在 Markdown 笔记中按 `Ctrl + Shift + Q` 打开快速输入框。
+2. 点击左侧 ribbon 的烧瓶图标打开快速输入框，或在 `Settings -> Hotkeys` 中给 `Toggle quick input` 绑定快捷键。
 3. 输入 `化 H2SO4`，按 `Enter`。
 4. 输入 `单位 9.8m/s2`，按 `Enter`。
 5. 输入 `可逆[加热][浓硫酸]`，查看预览后按 `Enter`。
 6. 输入 `help` 查看所有前缀。
 7. 按 `Esc` 退出。
+
+建议给 `Toggle quick input` 绑定 `Ctrl + Shift + Q`，给 `Toggle quick input focus` 绑定 `Ctrl + J`。
 
 常用前缀：
 
@@ -192,7 +218,15 @@ eq[heat][H2SO4]              -> \overset{\Delta}{\underset{\mathrm{H_2SO_4}}{\ri
 
 ```text
 物 动能            -> E_k=\frac{1}{2}mv^2
+物 动量            -> p=mv
+物 自由落体        -> v=gt,\ h=\frac{1}{2}gt^2
+物 密度            -> \rho=\frac{m}{V}
+物 浮力            -> F_{\text{浮}}=\rho gV_{\text{排}}
+物 向心力          -> F_c=m\frac{v^2}{r}=m\omega^2r
+物 万有引力        -> F=G\frac{m_1m_2}{r^2}
 物 欧姆定律        -> I=\frac{U}{R}
+物 库仑定律        -> F=k\frac{q_1q_2}{r^2}
+物 法拉第定律      -> \mathcal{E}=-\frac{\Delta\Phi}{\Delta t}
 物 波速            -> v=\lambda f
 化学 pH            -> \mathrm{pH}=-\lg[H^+]
 生化 ATP水解       -> \mathrm{ATP + H_2O \rightarrow ADP + P_i + H^+}
@@ -231,6 +265,10 @@ roman 2024         -> MMXXIV
 
 数学结构转换只做格式包裹，不检查数学表达式是否正确。
 
+## 截图
+
+TODO: 提交 Obsidian Community Plugins 前补充桌面端快速输入框、Science Panel 和设置页截图。
+
 ## 和 Latex Suite 的关系
 
 Science Input Helper 不是 Latex Suite 的替代品。
@@ -249,17 +287,17 @@ Science Input Helper 不是 Latex Suite 的替代品。
 插件提供右侧 `Science Panel`，也支持命令面板：
 
 ```text
-Science Input Helper: Toggle quick input
-Science Input Helper: Open Science Panel
-Science Input Helper: Convert chemical formula to inline math
-Science Input Helper: Convert chemical formula to block math
-Science Input Helper: Format unit to inline math
-Science Input Helper: Format unit to block math
-Science Input Helper: Search template and insert inline math
-Science Input Helper: Search template and insert block math
-Science Input Helper: Wrap selection with square root
-Science Input Helper: Wrap selection as fraction numerator
-Science Input Helper: Convert slash expression to fraction
+Toggle quick input
+Open Science Panel
+Convert chemical formula to inline math
+Convert chemical formula to block math
+Format unit to inline math
+Format unit to block math
+Search template and insert inline math
+Search template and insert block math
+Wrap selection with square root
+Wrap selection as fraction numerator
+Convert slash expression to fraction
 ```
 
 希腊字母、罗马数字和反应条件箭头主要通过快速输入框使用，目前不单独提供命令面板命令。
@@ -387,8 +425,9 @@ Release assets should include:
 main.js
 manifest.json
 styles.css
-science-input-helper-<version>.zip
 ```
+
+The optional zip package is for manual installation only. The GitHub Release must still attach `main.js`, `manifest.json`, and `styles.css` as separate assets.
 
 After building, copy the plugin files to:
 

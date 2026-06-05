@@ -1,5 +1,5 @@
 import { convertChemicalFormula } from "./chemicalFormula";
-import { convertGreekLetter, isGreekListQuery, searchGreekLetters, type GreekLetterResult } from "../converters/greekLetterConverter";
+import { isGreekListQuery, searchGreekLetters, type GreekLetterResult } from "../converters/greekLetterConverter";
 import { parseMathStructureQuickInput, type ParsedMathStructure } from "../converters/mathStructureConverter";
 import {
   parseFullReactionInput,

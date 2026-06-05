@@ -27,7 +27,9 @@ export class ScienceInputSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "Science Input Helper" });
+    new Setting(containerEl)
+      .setName("基础设置")
+      .setHeading();
 
     new Setting(containerEl)
       .setName("默认插入方式")
@@ -74,7 +76,7 @@ export class ScienceInputSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("快速输入后保持模式")
-      .setDesc("开启后，Enter 插入公式后会清空输入框并继续等待下一次输入。关闭后，插入一次即退出快速输入模式。")
+      .setDesc("开启后，插入公式后会清空输入框并继续等待下一次输入。关闭后，插入一次即退出快速输入模式。")
       .addToggle((toggle) => {
         toggle
           .setValue(this.plugin.settings.quickInputKeepOpen)
@@ -86,7 +88,7 @@ export class ScienceInputSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("快速切换焦点快捷键")
-      .setDesc("快速输入框打开时，用这个快捷键在输入框和正文编辑区之间切换焦点。也可以在 Hotkeys 里绑定 Toggle Science Input Focus 命令。")
+      .setDesc("快速输入框打开时，用这个快捷键在输入框和正文编辑区之间切换焦点。也可以在 Obsidian 快捷键设置中绑定对应命令。")
       .addDropdown((dropdown) => {
         dropdown
           .addOption("", "关闭")
@@ -153,8 +155,8 @@ export class ScienceInputSettingTab extends PluginSettingTab {
       });
 
     new Setting(containerEl)
-      .setName('Show all Greek letters for "希腊字母" / "greek"')
-      .setDesc("输入 希腊字母、greek 或 g 时显示全部希腊字母候选。")
+      .setName("Show all Greek letters for keyword")
+      .setDesc("输入希腊字母、Greek 或 g 时显示全部希腊字母候选。")
       .addToggle((toggle) => {
         toggle
           .setValue(this.plugin.settings.showAllGreekLettersForKeyword)
