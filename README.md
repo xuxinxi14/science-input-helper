@@ -9,10 +9,6 @@ Science Input Helper is an Obsidian plugin for Chinese science-course notes. It 
 
 Science Input Helper 是一个面向中文理科课程笔记的 Obsidian 插件，用于快速输入化学式、反应条件箭头、单位、常见公式模板、希腊字母、罗马数字、科学符号和轻量数学结构。
 
-> GitHub README does not support custom JavaScript. This README uses anchors and collapsible `<details>` blocks as a stable bilingual switch.
->
-> GitHub README 不支持自定义 JavaScript，因此本文档使用锚点和可折叠 `<details>` 区块实现稳定的双语切换。
-
 ---
 
 ## 中文
