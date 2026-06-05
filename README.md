@@ -5,111 +5,83 @@
   <a href="#english">English</a>
 </p>
 
-Science Input Helper is an Obsidian plugin for Chinese science-course notes. It helps students quickly enter chemistry formulas, reaction-condition arrows, units, common physics/chemistry/biochemistry templates, Greek letters, Roman numerals, scientific symbols, and lightweight math structures.
+一个为中文理科笔记设计的 Obsidian 输入助手。
 
-Science Input Helper 是一个面向中文理科课程笔记的 Obsidian 插件，用于快速输入化学式、反应条件箭头、单位、常见公式模板、希腊字母、罗马数字、科学符号和轻量数学结构。
+如果你在 Obsidian 里写数学、物理、化学、生物化学笔记时，经常被这些问题打断：
 
----
+- `H2SO4` 要手动改成 `H_2SO_4`
+- `9.8m/s2` 不知道怎么排成更规范的单位格式
+- 可逆反应上面想写“加热”，下面想写“浓硫酸”
+- 希腊字母、罗马数字、根号、分式总是要查 LaTeX
+- 上课记笔记时不想被公式输入拖慢
 
-## 中文
+Science Input Helper 就是为这些场景做的。
 
-<details open>
-<summary><strong>展开 / 收起中文说明</strong></summary>
+它不会替你判断科学内容是否正确，也不会自动解题或自动配平方程式；它只做一件事：把理科笔记里常见但难打的表达式，快速转换成 Obsidian 可以渲染的 LaTeX / MathJax 格式。
 
-### 插件定位
+## 它能做什么？
 
-Science Input Helper 补充 Latex Suite、Easy LaTeX、AI LaTeX Generator 等插件，而不是替代完整 LaTeX snippets 系统。
-
-推荐分工：
-
-| 任务 | 推荐工具 |
+| 你输入 | 插入结果 |
 | --- | --- |
-| 数学 snippets、矩阵、cases、复杂环境 | Latex Suite |
-| 化学式、离子式、反应条件、单位、中文模板 | Science Input Helper |
-| 希腊字母、罗马数字、常见科学符号 | Science Input Helper |
-| 完整 LaTeX 语法补全和复杂公式编辑 | Latex Suite |
-| 复杂公式转换后校对 | Latex Suite + 人工检查 |
+| `化 H2SO4` | `$\mathrm{H_2SO_4}$` |
+| `化 NH4+` | `$\mathrm{NH_4^{+}}$` |
+| `单位 9.8m/s2` | `$9.8\,\mathrm{m/s^2}$` |
+| `可逆[加热][浓硫酸]` | `\overset{\Delta}{\underset{\mathrm{浓硫酸}}{\rightleftharpoons}}` |
+| `生成[光照]` | `\xrightarrow{h\nu}` |
+| `希 阿尔法` | `\alpha` 或 `α` |
+| `罗马 12` | `XII` |
+| `根号 b^2-4ac` | `\sqrt{b^2-4ac}` |
+| `分式 a+b / c+d` | `\frac{a+b}{c+d}` |
 
-本插件不接入 AI，不检查科学内容正确性，不自动配平化学方程式。
+## 适合谁？
 
-### 安装方式
+这个插件更适合：
 
-Science Input Helper 目前还没有进入 Obsidian 社区插件市场，可以通过手动安装、BRAT 或 GitHub Releases 安装。
+- 用 Obsidian 写中文理科笔记的学生
+- 高中到本科低年级的数学、物理、化学、生物化学课程
+- 已经在用 Latex Suite，但还觉得化学式、单位、反应条件输入麻烦的人
+- 想把课堂笔记写得更规范，但不想记太多 LaTeX 命令的人
 
-#### 方法一：手动安装
+它不适合：
 
-1. 打开本仓库页面。
-2. 点击绿色 `Code` 按钮。
-3. 选择 `Download ZIP` 下载源码压缩包。
-4. 解压后找到以下三个文件：
+- 需要完整 LaTeX 编辑环境的人
+- 需要自动解题、自动配平、自动判断公式对错的人
+- 需要复杂化学结构绘图或 ChemDraw 替代品的人
 
-```text
-main.js
-manifest.json
-styles.css
-```
+## 30 秒快速上手
 
-5. 打开你的 Obsidian 库文件夹，进入：
+1. 在 Obsidian 中启用 `Science Input Helper`。
+2. 在 Markdown 笔记中按 `Ctrl + Shift + Q` 打开快速输入框。
+3. 输入 `化 H2SO4`，按 `Enter`。
+4. 输入 `单位 9.8m/s2`，按 `Enter`。
+5. 输入 `可逆[加热][浓硫酸]`，查看预览后按 `Enter`。
+6. 输入 `help` 查看所有前缀。
+7. 按 `Esc` 退出。
 
-```text
-<your-vault>/.obsidian/plugins/
-```
+常用前缀：
 
-如果没有 `plugins` 文件夹，可以手动新建。
+| 前缀 | 用途 | 示例 |
+| --- | --- | --- |
+| `化` / `c` | 化学式 | `化 H2SO4` |
+| `单位` / `u` | 单位格式化 | `单位 9.8m/s2` |
+| `物` / `p` | 物理模板 | `物 动能` |
+| `化学` / `ch` | 化学模板 | `化学 pH` |
+| `生化` / `b` | 生物化学模板 | `生化 ATP水解` |
+| `希` / `g` | 希腊字母 | `希 alpha` |
+| `罗马` / `r` | 罗马数字 | `罗马 12` |
+| `数` / `m` | 数学结构 | `数 根号 x+1` |
+| `原` / `raw` | 原样 LaTeX | `原 E=mc^2` |
 
-6. 在 `plugins` 文件夹中新建文件夹：
+通常情况下，`Enter` 会插入行内公式 `$...$`；`Ctrl/Cmd + Enter` 会插入块公式。`raw`、Unicode 希腊字母和罗马数字会作为普通文本插入，不自动包裹 `$...$`。
 
-```text
-science-input-helper
-```
+## 安装
 
-7. 将以下三个文件复制进去：
+Science Input Helper 目前还没有进入 Obsidian 官方社区插件市场，可以通过以下方式安装。
 
-```text
-main.js
-manifest.json
-styles.css
-```
+### 推荐方式：从 GitHub Releases 安装
 
-最终目录结构应为：
-
-```text
-<your-vault>/.obsidian/plugins/science-input-helper/main.js
-<your-vault>/.obsidian/plugins/science-input-helper/manifest.json
-<your-vault>/.obsidian/plugins/science-input-helper/styles.css
-```
-
-8. 重启 Obsidian。
-9. 打开 `Settings -> Community plugins`。
-10. 关闭 `Restricted mode`。
-11. 在已安装插件列表中找到并启用 `Science Input Helper`。
-
-#### 方法二：使用 BRAT 安装测试版
-
-如果你希望跟随 GitHub 仓库更新，可以使用 BRAT 安装。
-
-1. 在 Obsidian 社区插件中搜索并安装 `BRAT`。
-2. 启用 `BRAT`。
-3. 打开命令面板。
-4. 运行：
-
-```text
-BRAT: Add a beta plugin for testing
-```
-
-5. 输入本仓库地址：
-
-```text
-https://github.com/xuxinxi14/science-input-helper
-```
-
-6. 添加成功后，到 `Settings -> Community plugins` 中启用 `Science Input Helper`。
-
-#### 方法三：从 GitHub Releases 安装
-
-如果本仓库已经发布 Release，推荐从 Releases 页面下载插件文件。
-
-需要下载：
+1. 打开本仓库的 [Releases 页面](https://github.com/xuxinxi14/science-input-helper/releases)。
+2. 下载最新版本中的三个文件：
 
 ```text
 main.js
@@ -117,15 +89,37 @@ manifest.json
 styles.css
 ```
 
-然后按照“方法一：手动安装”的方式，将这三个文件放入：
+3. 在你的 Obsidian 库中创建插件目录：
 
 ```text
 <your-vault>/.obsidian/plugins/science-input-helper/
 ```
 
-#### 开发者安装
+4. 把三个文件放进去。
+5. 重启 Obsidian。
+6. 进入 `Settings -> Community plugins`，启用 `Science Input Helper`。
 
-如果你想从源码构建：
+也可以下载 release zip 包，解压后把 `science-input-helper` 文件夹放入：
+
+```text
+<your-vault>/.obsidian/plugins/
+```
+
+### 使用 BRAT 安装测试版
+
+如果你希望跟随 GitHub 仓库更新，可以使用 BRAT：
+
+1. 在 Obsidian 中安装并启用 `BRAT`。
+2. 运行命令 `BRAT: Add a beta plugin for testing`。
+3. 输入仓库地址：
+
+```text
+https://github.com/xuxinxi14/science-input-helper
+```
+
+4. 添加后启用插件。
+
+### 从源码构建
 
 ```bash
 npm install
@@ -141,63 +135,22 @@ manifest.json
 styles.css
 ```
 
-### 30 秒快速上手
+## 功能概览
 
-1. 在 Obsidian 中启用 `Science Input Helper`。
-2. 在 Markdown 笔记中按 `Ctrl + Shift + Q` 打开快速输入框。
-3. 输入 `化 H2SO4`，按 `Enter` 插入 `$\\mathrm{H_2SO_4}$`。
-4. 输入 `单位 9.8m/s2`，按 `Enter` 插入 `$9.8\\,\\mathrm{m/s^2}$`。
-5. 输入 `可逆[加热][浓硫酸]`，查看插入前预览，再按 `Enter`。
-6. 输入 `help` 查看前缀帮助，按 `Esc` 退出。
-
-快捷键：
-
-| 操作 | 默认快捷键 |
-| --- | --- |
-| 打开 / 关闭快速输入框 | `Ctrl + Shift + Q` |
-| 插入默认格式 | `Enter` |
-| 插入块公式 | `Ctrl/Cmd + Enter` |
-| 候选选择 | `Tab` / `ArrowUp` / `ArrowDown` |
-| 退出快速输入框 | `Esc` |
-
-通常情况下，`Enter` 会插入行内公式 `$...$`。`raw`、Unicode 希腊字母和罗马数字会作为普通文本插入，不自动包裹 `$...$`。
-
-### 快速输入前缀
-
-| 前缀 | 用途 | 示例 |
-| --- | --- | --- |
-| `化` / `c` | 化学式 | `化 H2SO4` |
-| `单位` / `u` | 单位格式化 | `单位 9.8m/s2` |
-| `物` / `p` | 物理模板 | `物 动能` |
-| `化学` / `ch` | 化学模板 | `化学 pH` |
-| `生化` / `b` | 生物化学模板 | `生化 ATP水解` |
-| `原` / `raw` | 原样 LaTeX | `原 E=mc^2` |
-| `希` / `g` | 希腊字母 | `希 alpha` |
-| `罗马` / `r` / `roman` | 罗马数字 | `罗马 12` |
-| `数` / `m` | 数学结构 | `数 根号 x+1` |
-
-输入 `help`、`帮助` 或 `?` 会显示快速输入帮助。
-
-### 化学式转换
-
-推荐使用 `化` 或 `c` 前缀，减少自动识别误判。
+### 化学式和离子式
 
 ```text
-H2O                -> \mathrm{H_2O}
-H2SO4             -> \mathrm{H_2SO_4}
-Ca(OH)2           -> \mathrm{Ca(OH)_2}
-2H2O              -> \mathrm{2H_2O}
-NH4+              -> \mathrm{NH_4^{+}}
-CH3COOH           -> \mathrm{CH_3COOH}
-CH3COO-           -> \mathrm{CH_3COO^{-}}
-SO4 2-            -> \mathrm{SO_4^{2-}}
-CuSO4·5H2O        -> \mathrm{CuSO_4\cdot 5H_2O}
-Ca2+ + CO3 2-     -> \mathrm{Ca^{2+} + CO_3^{2-}}
+化 H2O             -> \mathrm{H_2O}
+化 H2SO4           -> \mathrm{H_2SO_4}
+化 Ca(OH)2         -> \mathrm{Ca(OH)_2}
+化 2H2O            -> \mathrm{2H_2O}
+化 NH4+            -> \mathrm{NH_4^{+}}
+化 SO4 2-          -> \mathrm{SO_4^{2-}}
+化 CH3COO-         -> \mathrm{CH_3COO^{-}}
+化 CuSO4·5H2O      -> \mathrm{CuSO_4\cdot 5H_2O}
 ```
 
 ### 反应条件箭头
-
-支持在生成箭头或可逆箭头上方、下方添加反应条件、催化剂、温度等内容。
 
 ```text
 可逆                         -> \rightleftharpoons
@@ -205,23 +158,8 @@ Ca2+ + CO3 2-     -> \mathrm{Ca^{2+} + CO_3^{2-}}
 可逆[加热][浓硫酸]           -> \overset{\Delta}{\underset{\mathrm{浓硫酸}}{\rightleftharpoons}}
 可逆 上 加热 下 浓硫酸       -> \overset{\Delta}{\underset{\mathrm{浓硫酸}}{\rightleftharpoons}}
 eq[heat][H2SO4]              -> \overset{\Delta}{\underset{\mathrm{H_2SO_4}}{\rightleftharpoons}}
-
-生成[加热]                   -> \xrightarrow{\Delta}
 生成[光照]                   -> \xrightarrow{h\nu}
 生成[加热][催化剂]           -> \xrightarrow[\mathrm{cat.}]{\Delta}
-ra[heat][cat]                -> \xrightarrow[\mathrm{cat.}]{\Delta}
-```
-
-条件关键词：
-
-```text
-加热 / heat       -> \Delta
-光照 / hv / hν    -> h\nu
-催化剂 / cat      -> \mathrm{cat.}
-浓硫酸            -> \mathrm{浓硫酸}
-H2SO4             -> \mathrm{H_2SO_4}
-MnO2              -> \mathrm{MnO_2}
-170℃ / 25°C       -> 170\,^{\circ}\mathrm{C} / 25\,^{\circ}\mathrm{C}
 ```
 
 简单完整反应式：
@@ -236,63 +174,51 @@ MnO2              -> \mathrm{MnO_2}
 \mathrm{CH_3COOH + C_2H_5OH} \overset{\Delta}{\underset{\mathrm{浓硫酸}}{\rightleftharpoons}} \mathrm{CH_3COOC_2H_5 + H_2O}
 ```
 
-完整反应式转换目前是简单实验功能，只适合常见线性反应式。
+完整反应式转换目前是简单实验功能，适合常见线性反应式。
 
 ### 单位格式化
 
 ```text
-9.8m/s2             -> 9.8\,\mathrm{m/s^2}
-6.02e23 mol-1       -> 6.02\times10^{23}\,\mathrm{mol^{-1}}
-1e-3 mol/L          -> 1\times10^{-3}\,\mathrm{mol/L}
-37°C                -> 37\,^{\circ}\mathrm{C}
-8.314J/(mol K)      -> 8.314\,\mathrm{J/(mol\,K)}
+单位 9.8m/s2          -> 9.8\,\mathrm{m/s^2}
+单位 6.02e23 mol-1    -> 6.02\times10^{23}\,\mathrm{mol^{-1}}
+单位 1e-3 mol/L       -> 1\times10^{-3}\,\mathrm{mol/L}
+单位 37°C             -> 37\,^{\circ}\mathrm{C}
+单位 8.314J/(mol K)   -> 8.314\,\mathrm{J/(mol\,K)}
 ```
 
 单位格式化只改变显示格式，不进行单位换算。例如不会把 `1000mg` 自动换算成 `1g`。
 
-### 模板、符号和结构
-
-常见模板：
+### 公式模板和常用符号
 
 ```text
-物 动能        -> E_k=\frac{1}{2}mv^2
-物 欧姆定律    -> I=\frac{U}{R}
-化学 pH        -> \mathrm{pH}=-\lg[H^+]
-生化 ATP水解   -> \mathrm{ATP + H_2O \rightarrow ADP + P_i + H^+}
+物 动能            -> E_k=\frac{1}{2}mv^2
+物 欧姆定律        -> I=\frac{U}{R}
+物 波速            -> v=\lambda f
+化学 pH            -> \mathrm{pH}=-\lg[H^+]
+生化 ATP水解       -> \mathrm{ATP + H_2O \rightarrow ADP + P_i + H^+}
+约等于             -> \approx
+成正比             -> \propto
+远大于             -> \gg
+因为               -> \because
+所以               -> \therefore
 ```
 
-常见符号：
+### 希腊字母和罗马数字
 
 ```text
-约等于    -> \approx
-成正比    -> \propto
-远大于    -> \gg
-因为      -> \because
-所以      -> \therefore
+希 alpha           -> \alpha
+希 阿尔法          -> \alpha
+希 Delta           -> \Delta
+希 大写delta       -> \Delta
+希 omega           -> \omega
+希 varphi          -> \varphi
+罗马 12            -> XII
+roman 2024         -> MMXXIV
 ```
 
-希腊字母：
+单独输入 `g` 会显示全部希腊字母候选；输入 `g alpha` 会搜索对应字母。希腊字母可以在设置页选择 LaTeX 或 Unicode 输出。罗马数字必须带前缀，裸数字 `12` 不会自动转换成 `XII`。
 
-```text
-alpha / 阿尔法      -> \alpha
-Delta / 大写delta   -> \Delta
-omega / 欧米伽      -> \omega
-varphi / 变体phi    -> \varphi
-```
-
-单独输入 `g` 会显示全部希腊字母；输入 `g alpha` 会搜索对应字母。希腊字母可以在设置页选择 LaTeX 或 Unicode 输出。Unicode 模式会作为普通文本插入。
-
-罗马数字必须带前缀：
-
-```text
-r 12       -> XII
-roman 49   -> XLIX
-罗马 2024  -> MMXXIV
-```
-
-裸数字 `12` 不会自动转换成 `XII`。
-
-数学结构：
+### 数学结构
 
 ```text
 根号 b^2-4ac       -> \sqrt{b^2-4ac}
@@ -305,7 +231,20 @@ roman 49   -> XLIX
 
 数学结构转换只做格式包裹，不检查数学表达式是否正确。
 
-### Science Panel 和命令
+## 和 Latex Suite 的关系
+
+Science Input Helper 不是 Latex Suite 的替代品。
+
+推荐分工：
+
+| 场景 | 推荐工具 |
+| --- | --- |
+| 数学 snippets、矩阵、cases、复杂 LaTeX 环境 | Latex Suite |
+| 化学式、离子式、反应条件、单位、中文模板 | Science Input Helper |
+| 希腊字母、罗马数字、常见科学符号 | Science Input Helper |
+| 复杂公式编辑和校对 | Latex Suite + 人工检查 |
+
+## Science Panel 和命令
 
 插件提供右侧 `Science Panel`，也支持命令面板：
 
@@ -318,88 +257,73 @@ Science Input Helper: Format unit to inline math
 Science Input Helper: Format unit to block math
 Science Input Helper: Search template and insert inline math
 Science Input Helper: Search template and insert block math
+Science Input Helper: Wrap selection with square root
+Science Input Helper: Wrap selection as fraction numerator
+Science Input Helper: Convert slash expression to fraction
 ```
 
 希腊字母、罗马数字和反应条件箭头主要通过快速输入框使用，目前不单独提供命令面板命令。
 
-### 插件限制
+## 限制
 
-- 不检查科学内容正确性。
-- 不自动配平化学方程式。
-- 不进行单位换算。
-- 不替代 Latex Suite。
-- 反应条件箭头只做排版，不判断条件是否真实或是否适用于该反应。
-- 完整反应式转换目前是简单实验功能，不解析复杂有机结构式、机理箭头或多步反应。
-- 不保证所有复杂化学式、复杂离子和有机结构式都能一次转换正确。
-- 复杂公式转换后需要人工检查。
+这个插件只负责输入和排版辅助，不负责科学判断。
 
-### 开发
+它不会：
 
-```bash
-npm install
-npm test
-npm run build
-```
+- 检查公式是否适用于当前题目
+- 判断反应条件是否真实
+- 自动配平化学方程式
+- 进行单位换算
+- 替代完整 LaTeX 编辑器
+- 解析复杂有机结构式或反应机理
 
-构建后将 `main.js`、`manifest.json`、`styles.css` 放入：
-
-```text
-<your-vault>/.obsidian/plugins/science-input-helper/
-```
-
-#### 发布 Release 建议
-
-发布新版本时，建议在 GitHub Releases 中上传：
-
-```text
-main.js
-manifest.json
-styles.css
-science-input-helper-<version>.zip
-```
-
-普通用户只需要下载这三个插件文件，或下载 zip 包并解压到：
-
-```text
-<your-vault>/.obsidian/plugins/science-input-helper/
-```
-
-</details>
-
----
+复杂内容转换后仍然需要人工检查。
 
 ## English
 
-<details>
-<summary><strong>Expand / collapse English guide</strong></summary>
+### What Is This?
 
-### Purpose
+Science Input Helper is an Obsidian plugin for Chinese science-course notes.
 
-Science Input Helper complements Latex Suite, Easy LaTeX, AI LaTeX Generator, and similar plugins. It does not try to replace a full LaTeX snippet system.
+It helps you type common chemistry formulas, reaction-condition arrows, units, Greek letters, Roman numerals, scientific symbols, and lightweight math structures without memorizing too many LaTeX commands.
 
-Recommended division of work:
+It is not an AI solver, a chemistry validator, or a full LaTeX snippet system.
 
-| Task | Recommended Tool |
+### Who Is It For?
+
+Science Input Helper is useful for:
+
+- students writing Chinese science notes in Obsidian
+- high-school to early-undergraduate math, physics, chemistry, and biochemistry courses
+- users who already use Latex Suite but still find chemistry formulas, units, and reaction conditions slow to type
+- users who want cleaner notes without memorizing many LaTeX commands
+
+It is not suitable for:
+
+- full LaTeX document editing
+- automatic problem solving or equation balancing
+- complex chemical structure drawing
+
+### Quick Examples
+
+| Input | Inserted Result |
 | --- | --- |
-| Math snippets, matrices, cases, complex environments | Latex Suite |
-| Chemistry formulas, reaction conditions, units, Chinese templates | Science Input Helper |
-| Greek letters, Roman numerals, common science symbols | Science Input Helper |
-| Full LaTeX syntax completion and complex formula editing | Latex Suite |
-| Reviewing converted complex formulas | Latex Suite + manual check |
-
-This plugin does not use AI, does not validate scientific correctness, and does not balance chemical equations.
+| `c H2SO4` | `$\mathrm{H_2SO_4}$` |
+| `u 9.8m/s2` | `$9.8\,\mathrm{m/s^2}$` |
+| `eq[heat][H2SO4]` | `\overset{\Delta}{\underset{\mathrm{H_2SO_4}}{\rightleftharpoons}}` |
+| `g alpha` | `\alpha` or `α` |
+| `roman 12` | `XII` |
+| `sqrt b^2-4ac` | `\sqrt{b^2-4ac}` |
+| `frac a+b / c+d` | `\frac{a+b}{c+d}` |
 
 ### Installation
 
-Science Input Helper is not yet listed in the official Obsidian Community Plugins directory. You can install it manually, with BRAT, or from GitHub Releases.
+Science Input Helper is not yet listed in the official Obsidian Community Plugins directory.
 
-#### Option 1: Manual installation
+Recommended installation:
 
-1. Open this GitHub repository.
-2. Click the green `Code` button.
-3. Choose `Download ZIP`.
-4. Unzip the downloaded file.
-5. Find these three files:
+1. Open the [Releases page](https://github.com/xuxinxi14/science-input-helper/releases).
+2. Download:
 
 ```text
 main.js
@@ -407,290 +331,49 @@ manifest.json
 styles.css
 ```
 
-6. Open your Obsidian vault folder and go to:
+3. Create this folder in your Obsidian vault:
 
 ```text
-<your-vault>/.obsidian/plugins/
+<your-vault>/.obsidian/plugins/science-input-helper/
 ```
 
-If the `plugins` folder does not exist, create it manually.
+4. Put the three files into that folder.
+5. Restart Obsidian.
+6. Go to `Settings -> Community plugins` and enable `Science Input Helper`.
 
-7. Create a new folder:
-
-```text
-science-input-helper
-```
-
-8. Copy the three plugin files into it:
-
-```text
-main.js
-manifest.json
-styles.css
-```
-
-The final structure should be:
-
-```text
-<your-vault>/.obsidian/plugins/science-input-helper/main.js
-<your-vault>/.obsidian/plugins/science-input-helper/manifest.json
-<your-vault>/.obsidian/plugins/science-input-helper/styles.css
-```
-
-9. Restart Obsidian.
-10. Go to `Settings -> Community plugins`.
-11. Turn off `Restricted mode`.
-12. Enable `Science Input Helper`.
-
-#### Option 2: Install with BRAT
-
-If you want to follow the GitHub version, you can install the plugin with BRAT.
-
-1. Install and enable `BRAT` from Obsidian Community Plugins.
-2. Open the command palette.
-3. Run:
+You can also install it with BRAT:
 
 ```text
 BRAT: Add a beta plugin for testing
-```
-
-4. Enter this repository URL:
-
-```text
 https://github.com/xuxinxi14/science-input-helper
 ```
 
-5. After BRAT adds the plugin, enable `Science Input Helper` in `Settings -> Community plugins`.
+### Features
 
-#### Option 3: Install from GitHub Releases
-
-If this repository has published a Release, download these files from the latest Release:
-
-```text
-main.js
-manifest.json
-styles.css
-```
-
-Then copy them to:
-
-```text
-<your-vault>/.obsidian/plugins/science-input-helper/
-```
-
-#### Developer installation
-
-To build from source:
-
-```bash
-npm install
-npm test
-npm run build
-```
-
-Then copy:
-
-```text
-main.js
-manifest.json
-styles.css
-```
-
-to:
-
-```text
-<your-vault>/.obsidian/plugins/science-input-helper/
-```
-
-### 30-Second Start
-
-1. Enable `Science Input Helper` in Obsidian.
-2. Press `Ctrl + Shift + Q` in a Markdown note to open Quick Input.
-3. Type `c H2SO4`, then press `Enter` to insert `$\\mathrm{H_2SO_4}$`.
-4. Type `u 9.8m/s2`, then press `Enter` to insert `$9.8\\,\\mathrm{m/s^2}$`.
-5. Type `eq[heat][H2SO4]`, check the preview, then press `Enter`.
-6. Type `help` to view prefix help. Press `Esc` to close.
-
-Hotkeys:
-
-| Action | Default |
-| --- | --- |
-| Toggle Quick Input | `Ctrl + Shift + Q` |
-| Insert default format | `Enter` |
-| Insert block math | `Ctrl/Cmd + Enter` |
-| Select suggestions | `Tab` / `ArrowUp` / `ArrowDown` |
-| Close Quick Input | `Esc` |
-
-Most outputs are inserted as inline math with `$...$`. `raw`, Unicode Greek letters, and Roman numerals are inserted as plain text.
-
-### Quick Input Prefixes
-
-| Prefix | Purpose | Example |
-| --- | --- | --- |
-| `c` / `chem` | Chemical formula | `c H2SO4` |
-| `u` / `unit` | Unit formatter | `u 9.8m/s2` |
-| `p` / `physics` | Physics template | `p kinetic energy` |
-| `ch` / `chemistry` | Chemistry template | `ch pH` |
-| `b` / `bio` | Biochemistry template | `b ATP hydrolysis` |
-| `raw` | Raw LaTeX | `raw E=mc^2` |
-| `g` | Greek letters | `g alpha` |
-| `r` / `roman` | Roman numerals | `roman 12` |
-| `m` | Math structures | `m sqrt x+1` |
-
-Type `help`, `帮助`, or `?` to show prefix help.
-
-### Chemical Formula Converter
-
-Use `c` or `chem` when possible to reduce ambiguity.
-
-```text
-H2O                -> \mathrm{H_2O}
-H2SO4             -> \mathrm{H_2SO_4}
-Ca(OH)2           -> \mathrm{Ca(OH)_2}
-2H2O              -> \mathrm{2H_2O}
-NH4+              -> \mathrm{NH_4^{+}}
-CH3COOH           -> \mathrm{CH_3COOH}
-CH3COO-           -> \mathrm{CH_3COO^{-}}
-SO4 2-            -> \mathrm{SO_4^{2-}}
-CuSO4·5H2O        -> \mathrm{CuSO_4\cdot 5H_2O}
-Ca2+ + CO3 2-     -> \mathrm{Ca^{2+} + CO_3^{2-}}
-```
-
-### Reaction Condition Arrows
-
-Reaction Condition Helper supports labels above and below reaction arrows.
-
-```text
-可逆                         -> \rightleftharpoons
-可逆[加热]                   -> \overset{\Delta}{\rightleftharpoons}
-可逆[加热][浓硫酸]           -> \overset{\Delta}{\underset{\mathrm{浓硫酸}}{\rightleftharpoons}}
-eq[heat][H2SO4]              -> \overset{\Delta}{\underset{\mathrm{H_2SO_4}}{\rightleftharpoons}}
-
-生成[加热]                   -> \xrightarrow{\Delta}
-生成[光照]                   -> \xrightarrow{h\nu}
-ra[heat][cat]                -> \xrightarrow[\mathrm{cat.}]{\Delta}
-```
-
-Condition keywords:
-
-```text
-加热 / heat       -> \Delta
-光照 / hv / hν    -> h\nu
-催化剂 / cat      -> \mathrm{cat.}
-H2SO4             -> \mathrm{H_2SO_4}
-MnO2              -> \mathrm{MnO_2}
-170℃ / 25°C       -> 170\,^{\circ}\mathrm{C} / 25\,^{\circ}\mathrm{C}
-```
-
-Simple full reaction:
-
-```text
-反应 CH3COOH + C2H5OH 可逆[加热][浓硫酸] CH3COOC2H5 + H2O
-```
-
-Output:
-
-```latex
-\mathrm{CH_3COOH + C_2H_5OH} \overset{\Delta}{\underset{\mathrm{浓硫酸}}{\rightleftharpoons}} \mathrm{CH_3COOC_2H_5 + H_2O}
-```
-
-Full reaction conversion is an experimental simple parser for common linear reactions.
-
-### Unit Formatter
-
-```text
-9.8m/s2             -> 9.8\,\mathrm{m/s^2}
-6.02e23 mol-1       -> 6.02\times10^{23}\,\mathrm{mol^{-1}}
-1e-3 mol/L          -> 1\times10^{-3}\,\mathrm{mol/L}
-37°C                -> 37\,^{\circ}\mathrm{C}
-8.314J/(mol K)      -> 8.314\,\mathrm{J/(mol\,K)}
-```
-
-The unit formatter only changes display format. It does not convert units, so `1000mg` will not become `1g`.
-
-### Templates, Symbols, and Structures
-
-Templates:
-
-```text
-物 动能        -> E_k=\frac{1}{2}mv^2
-物 欧姆定律    -> I=\frac{U}{R}
-化学 pH        -> \mathrm{pH}=-\lg[H^+]
-生化 ATP水解   -> \mathrm{ATP + H_2O \rightarrow ADP + P_i + H^+}
-```
-
-Symbols:
-
-```text
-约等于    -> \approx
-成正比    -> \propto
-远大于    -> \gg
-因为      -> \because
-所以      -> \therefore
-```
-
-Greek letters:
-
-```text
-alpha / 阿尔法      -> \alpha
-Delta / 大写delta   -> \Delta
-omega / 欧米伽      -> \omega
-varphi / 变体phi    -> \varphi
-```
-
-Typing `g` alone shows all Greek-letter candidates. Typing `g alpha` searches for alpha. Greek output can be configured as LaTeX or Unicode.
-
-Roman numerals require a prefix:
-
-```text
-r 12       -> XII
-roman 49   -> XLIX
-罗马 2024  -> MMXXIV
-```
-
-Bare `12` will not be converted to `XII`.
-
-Math structures:
-
-```text
-根号 b^2-4ac       -> \sqrt{b^2-4ac}
-三次根号 x+1       -> \sqrt[3]{x+1}
-分式 a+b / c+d     -> \frac{a+b}{c+d}
-括号 x+1           -> \left(x+1\right)
-绝对值 x-1         -> \left|x-1\right|
-向量 v             -> \vec{v}
-```
-
-Math structure conversion only wraps text. It does not validate mathematical meaning.
-
-### Science Panel and Commands
-
-The plugin provides a right-side `Science Panel` and these command-palette commands:
-
-```text
-Science Input Helper: Toggle quick input
-Science Input Helper: Open Science Panel
-Science Input Helper: Convert chemical formula to inline math
-Science Input Helper: Convert chemical formula to block math
-Science Input Helper: Format unit to inline math
-Science Input Helper: Format unit to block math
-Science Input Helper: Search template and insert inline math
-Science Input Helper: Search template and insert block math
-```
-
-Greek letters, Roman numerals, and reaction-condition arrows are mainly used through Quick Input and currently do not provide separate command-palette commands.
+- chemistry formula and ion formatting
+- reaction-condition arrows
+- unit formatting
+- physics, chemistry, and biochemistry templates
+- Greek letters and Roman numerals
+- common scientific symbols
+- lightweight math structures such as roots, fractions, brackets, vectors, superscripts, and subscripts
+- quick input mode with preview
+- right-side Science Panel
 
 ### Limitations
 
-- Does not validate scientific correctness.
-- Does not balance chemical equations.
-- Does not convert units.
-- Does not replace Latex Suite.
-- Reaction condition arrows are formatting helpers only.
-- Full reaction conversion is an experimental simple parser and does not parse complex organic structures, mechanism arrows, or multi-step reactions.
-- Complex formulas should be reviewed manually after conversion.
+Science Input Helper only helps with input and formatting. It does not:
 
-### Development
+- validate scientific correctness
+- balance chemical equations
+- convert units
+- solve problems
+- replace Latex Suite
+- parse complex organic structures or reaction mechanisms
+
+Complex output should be checked manually.
+
+## Development
 
 ```bash
 npm install
@@ -698,15 +381,7 @@ npm test
 npm run build
 ```
 
-After building, copy `main.js`, `manifest.json`, and `styles.css` to:
-
-```text
-<your-vault>/.obsidian/plugins/science-input-helper/
-```
-
-#### Release Publishing Tip
-
-When publishing a new version, upload these assets to GitHub Releases:
+Release assets should include:
 
 ```text
 main.js
@@ -715,10 +390,8 @@ styles.css
 science-input-helper-<version>.zip
 ```
 
-Regular users only need to download the three plugin files, or download the zip package and extract it to:
+After building, copy the plugin files to:
 
 ```text
 <your-vault>/.obsidian/plugins/science-input-helper/
 ```
-
-</details>
