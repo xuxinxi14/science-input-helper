@@ -32,6 +32,115 @@ Science Input Helper 补充 Latex Suite、Easy LaTeX、AI LaTeX Generator 等插
 
 本插件不接入 AI，不检查科学内容正确性，不自动配平化学方程式。
 
+### 安装方式
+
+Science Input Helper 目前还没有进入 Obsidian 社区插件市场，可以通过手动安装、BRAT 或 GitHub Releases 安装。
+
+#### 方法一：手动安装
+
+1. 打开本仓库页面。
+2. 点击绿色 `Code` 按钮。
+3. 选择 `Download ZIP` 下载源码压缩包。
+4. 解压后找到以下三个文件：
+
+```text
+main.js
+manifest.json
+styles.css
+```
+
+5. 打开你的 Obsidian 库文件夹，进入：
+
+```text
+<your-vault>/.obsidian/plugins/
+```
+
+如果没有 `plugins` 文件夹，可以手动新建。
+
+6. 在 `plugins` 文件夹中新建文件夹：
+
+```text
+science-input-helper
+```
+
+7. 将以下三个文件复制进去：
+
+```text
+main.js
+manifest.json
+styles.css
+```
+
+最终目录结构应为：
+
+```text
+<your-vault>/.obsidian/plugins/science-input-helper/main.js
+<your-vault>/.obsidian/plugins/science-input-helper/manifest.json
+<your-vault>/.obsidian/plugins/science-input-helper/styles.css
+```
+
+8. 重启 Obsidian。
+9. 打开 `Settings -> Community plugins`。
+10. 关闭 `Restricted mode`。
+11. 在已安装插件列表中找到并启用 `Science Input Helper`。
+
+#### 方法二：使用 BRAT 安装测试版
+
+如果你希望跟随 GitHub 仓库更新，可以使用 BRAT 安装。
+
+1. 在 Obsidian 社区插件中搜索并安装 `BRAT`。
+2. 启用 `BRAT`。
+3. 打开命令面板。
+4. 运行：
+
+```text
+BRAT: Add a beta plugin for testing
+```
+
+5. 输入本仓库地址：
+
+```text
+https://github.com/xuxinxi14/science-input-helper
+```
+
+6. 添加成功后，到 `Settings -> Community plugins` 中启用 `Science Input Helper`。
+
+#### 方法三：从 GitHub Releases 安装
+
+如果本仓库已经发布 Release，推荐从 Releases 页面下载插件文件。
+
+需要下载：
+
+```text
+main.js
+manifest.json
+styles.css
+```
+
+然后按照“方法一：手动安装”的方式，将这三个文件放入：
+
+```text
+<your-vault>/.obsidian/plugins/science-input-helper/
+```
+
+#### 开发者安装
+
+如果你想从源码构建：
+
+```bash
+npm install
+npm test
+npm run build
+```
+
+构建完成后，将以下文件复制到插件目录：
+
+```text
+main.js
+manifest.json
+styles.css
+```
+
 ### 30 秒快速上手
 
 1. 在 Obsidian 中启用 `Science Input Helper`。
@@ -238,6 +347,23 @@ npm run build
 <your-vault>/.obsidian/plugins/science-input-helper/
 ```
 
+#### 发布 Release 建议
+
+发布新版本时，建议在 GitHub Releases 中上传：
+
+```text
+main.js
+manifest.json
+styles.css
+science-input-helper-<version>.zip
+```
+
+普通用户只需要下载这三个插件文件，或下载 zip 包并解压到：
+
+```text
+<your-vault>/.obsidian/plugins/science-input-helper/
+```
+
 </details>
 
 ---
@@ -262,6 +388,119 @@ Recommended division of work:
 | Reviewing converted complex formulas | Latex Suite + manual check |
 
 This plugin does not use AI, does not validate scientific correctness, and does not balance chemical equations.
+
+### Installation
+
+Science Input Helper is not yet listed in the official Obsidian Community Plugins directory. You can install it manually, with BRAT, or from GitHub Releases.
+
+#### Option 1: Manual installation
+
+1. Open this GitHub repository.
+2. Click the green `Code` button.
+3. Choose `Download ZIP`.
+4. Unzip the downloaded file.
+5. Find these three files:
+
+```text
+main.js
+manifest.json
+styles.css
+```
+
+6. Open your Obsidian vault folder and go to:
+
+```text
+<your-vault>/.obsidian/plugins/
+```
+
+If the `plugins` folder does not exist, create it manually.
+
+7. Create a new folder:
+
+```text
+science-input-helper
+```
+
+8. Copy the three plugin files into it:
+
+```text
+main.js
+manifest.json
+styles.css
+```
+
+The final structure should be:
+
+```text
+<your-vault>/.obsidian/plugins/science-input-helper/main.js
+<your-vault>/.obsidian/plugins/science-input-helper/manifest.json
+<your-vault>/.obsidian/plugins/science-input-helper/styles.css
+```
+
+9. Restart Obsidian.
+10. Go to `Settings -> Community plugins`.
+11. Turn off `Restricted mode`.
+12. Enable `Science Input Helper`.
+
+#### Option 2: Install with BRAT
+
+If you want to follow the GitHub version, you can install the plugin with BRAT.
+
+1. Install and enable `BRAT` from Obsidian Community Plugins.
+2. Open the command palette.
+3. Run:
+
+```text
+BRAT: Add a beta plugin for testing
+```
+
+4. Enter this repository URL:
+
+```text
+https://github.com/xuxinxi14/science-input-helper
+```
+
+5. After BRAT adds the plugin, enable `Science Input Helper` in `Settings -> Community plugins`.
+
+#### Option 3: Install from GitHub Releases
+
+If this repository has published a Release, download these files from the latest Release:
+
+```text
+main.js
+manifest.json
+styles.css
+```
+
+Then copy them to:
+
+```text
+<your-vault>/.obsidian/plugins/science-input-helper/
+```
+
+#### Developer installation
+
+To build from source:
+
+```bash
+npm install
+npm test
+npm run build
+```
+
+Then copy:
+
+```text
+main.js
+manifest.json
+styles.css
+```
+
+to:
+
+```text
+<your-vault>/.obsidian/plugins/science-input-helper/
+```
 
 ### 30-Second Start
 
@@ -460,6 +699,23 @@ npm run build
 ```
 
 After building, copy `main.js`, `manifest.json`, and `styles.css` to:
+
+```text
+<your-vault>/.obsidian/plugins/science-input-helper/
+```
+
+#### Release Publishing Tip
+
+When publishing a new version, upload these assets to GitHub Releases:
+
+```text
+main.js
+manifest.json
+styles.css
+science-input-helper-<version>.zip
+```
+
+Regular users only need to download the three plugin files, or download the zip package and extract it to:
 
 ```text
 <your-vault>/.obsidian/plugins/science-input-helper/
