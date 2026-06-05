@@ -1,0 +1,32 @@
+{
+  "name": "science-input-helper",
+  "version": "0.7.0",
+  "description": "Obsidian helper for Chinese science notes: chemistry formulas, physics templates, units, and biochemistry expressions.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs watch",
+    "build": "tsc -noEmit && node esbuild.config.mjs production",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "obsidian",
+    "latex",
+    "chemistry",
+    "physics",
+    "science-notes"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@codemirror/state": "6.5.0",
+    "@codemirror/view": "^6.38.6",
+    "@types/node": "^24.10.1",
+    "builtin-modules": "^5.0.0",
+    "esbuild": "^0.27.0",
+    "obsidian": "^1.8.7",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.14"
+  }
+}
