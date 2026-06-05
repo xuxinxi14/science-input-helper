@@ -5,6 +5,9 @@
   <a href="#english">English</a>
 </p>
 
+<img width="1165" height="838" alt="image" src="https://github.com/user-attachments/assets/d639899d-898a-4e0c-9f0c-f17d90c5b9c9" />
+
+
 适用于中文理科笔记的 Obsidian 输入辅助工具，支持化学式、反应条件箭头、单位、希腊字母、罗马数字和常见数学结构。
 
 Input helper for Chinese science notes: chemical formulas, reaction arrows, units, Greek letters, Roman numerals, and lightweight math structures.
@@ -35,6 +38,10 @@ Science Input Helper 就是为这些场景做的。
 | `根号 b^2-4ac` | `\sqrt{b^2-4ac}` |
 | `分式 a+b / c+d` | `\frac{a+b}{c+d}` |
 
+<img width="687" height="358" alt="image" src="https://github.com/user-attachments/assets/1508c634-3af5-4068-afa9-fa5909db0dbd" />
+<img width="688" height="370" alt="image" src="https://github.com/user-attachments/assets/4104d997-fa8c-47bd-b611-90fb3273adc3" />
+
+
 ## 功能汇总表
 
 | 类别 | 典型输入 | 插入结果 | 说明 |
@@ -58,6 +65,8 @@ Science Input Helper 就是为这些场景做的。
 | 根号结构 | `根号 b^2-4ac` | `\sqrt{b^2-4ac}` | 快速生成根号 |
 | 分式结构 | `分式 a+b / c+d` | `\frac{a+b}{c+d}` | 按第一个 `/` 分割 |
 | 常用符号 | `约等于` | `\approx` | 关系、推理、反应符号 |
+
+<img width="852" height="534" alt="image" src="https://github.com/user-attachments/assets/e0f7a3b9-3d42-430e-bc2f-81e3a90fdfca" />
 
 ## 适合谁？
 
@@ -303,6 +312,8 @@ Convert slash expression to fraction
 ```
 
 希腊字母、罗马数字和反应条件箭头主要通过快速输入框使用，目前不单独提供命令面板命令。
+
+<img width="705" height="777" alt="image" src="https://github.com/user-attachments/assets/6b1caf58-24bf-4643-8d94-3dd41674ce1f" />
 
 ## 限制
 
