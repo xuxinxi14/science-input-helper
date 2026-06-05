@@ -7,7 +7,7 @@ export const DEFAULT_SETTINGS: ScienceInputHelperSettings = {
   openPanelOnStartup: false,
   defaultTemplateCategory: "all",
   quickInputKeepOpen: true,
-  quickInputFocusHotkey: "Ctrl+;",
+  quickInputFocusHotkey: "Ctrl+J",
   quickInputPosition: null,
   enableGreekLetterHelper: true,
   greekOutputMode: "latex",
@@ -90,6 +90,7 @@ export class ScienceInputSettingTab extends PluginSettingTab {
       .addDropdown((dropdown) => {
         dropdown
           .addOption("", "关闭")
+          .addOption("Ctrl+J", "Ctrl + J")
           .addOption("Ctrl+;", "Ctrl + ;")
           .addOption("Ctrl+Shift+Space", "Ctrl + Shift + Space")
           .addOption("Ctrl+Alt+Space", "Ctrl + Alt + Space")

@@ -1,6 +1,6 @@
 {
   "name": "science-input-helper",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Obsidian helper for Chinese science notes: chemistry formulas, physics templates, units, and biochemistry expressions.",
   "main": "main.js",
   "scripts": {

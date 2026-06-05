@@ -1,7 +1,7 @@
 {
   "id": "science-input-helper",
   "name": "Science Input Helper",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "minAppVersion": "1.5.0",
   "description": "Input helper for Chinese science notes: chemistry formulas, physics templates, units, and biochemistry expressions.",
   "author": "",
