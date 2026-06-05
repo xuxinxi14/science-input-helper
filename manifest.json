@@ -3,7 +3,7 @@
   "name": "Science Input Helper",
   "version": "0.7.2",
   "minAppVersion": "1.5.0",
-  "description": "Input helper for Chinese science notes: chemistry formulas, physics templates, units, and biochemistry expressions.",
+  "description": "Input helper for Chinese science notes: chemical formulas, reaction arrows, units, Greek letters, Roman numerals, and lightweight math structures.",
   "author": "XinXi Xu",
   "authorUrl": "https://github.com/xuxinxi14",
   "fundingUrl": "",

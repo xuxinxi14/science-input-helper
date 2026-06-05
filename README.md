@@ -5,7 +5,9 @@
   <a href="#english">English</a>
 </p>
 
-一个为中文理科笔记设计的 Obsidian 输入助手。
+适用于中文理科笔记的 Obsidian 输入辅助工具，支持化学式、反应条件箭头、单位、希腊字母、罗马数字和常见数学结构。
+
+Input helper for Chinese science notes: chemical formulas, reaction arrows, units, Greek letters, Roman numerals, and lightweight math structures.
 
 如果你在 Obsidian 里写数学、物理、化学、生物化学笔记时，经常被这些问题打断：
 
@@ -321,11 +323,13 @@ Convert slash expression to fraction
 
 ### What Is This?
 
-Science Input Helper is an Obsidian plugin for Chinese science-course notes.
+Science Input Helper is an Obsidian plugin designed for Chinese science-course notes.
 
-It helps you type common chemistry formulas, reaction-condition arrows, units, Greek letters, Roman numerals, scientific symbols, and lightweight math structures without memorizing too many LaTeX commands.
+It helps convert common science-note expressions into Obsidian-renderable LaTeX / MathJax, including chemical formulas and ions, reaction arrows with top/bottom conditions, units, scientific notation, Greek letters, Roman numerals, common science symbols, and lightweight math structures such as roots, fractions, brackets, vectors, superscripts, and subscripts.
 
-It is not an AI solver, a chemistry validator, or a full LaTeX snippet system.
+The plugin is designed as a practical companion to Latex Suite. Latex Suite is still recommended for full mathematical snippets, matrices, cases, and complex LaTeX editing. Science Input Helper focuses on the small but frequent expressions that often slow down classroom note-taking in chemistry, physics, mathematics, and biochemistry.
+
+It does not solve problems, check scientific correctness, balance chemical equations, perform unit conversions, or replace a full LaTeX editing workflow. Complex expressions should still be checked manually.
 
 ### Who Is It For?
 
