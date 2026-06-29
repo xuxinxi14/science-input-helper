@@ -64,6 +64,23 @@ describe("parseQuickInput", () => {
     expect(parseQuickInput("绝对值 x-1").latex).toBe("\\left|x-1\\right|");
   });
 
+  it("prefers simple variable notation before chemical auto-detection", () => {
+    const singleLetter = parseQuickInput("S");
+    const subscript = parseQuickInput("v1");
+    const uppercaseSubscript = parseQuickInput("S1");
+
+    expect(singleLetter.kind).toBe("math");
+    expect(singleLetter.latex).toBe("S");
+    expect(singleLetter.outputFormat).toBe("latex");
+    expect(subscript.kind).toBe("math");
+    expect(subscript.latex).toBe("v_1");
+    expect(subscript.suggestions[0]?.latex).toBe("v_1");
+    expect(subscript.suggestions[1]?.latex).toBe("v^1");
+    expect(uppercaseSubscript.latex).toBe("S_1");
+    expect(parseQuickInput("H2O").kind).toBe("chemical");
+    expect(parseQuickInput("化 S1").latex).toBe("\\mathrm{S_1}");
+  });
+
   it("auto-detects reaction condition arrows before symbols", () => {
     expect(parseQuickInput("可逆[加热]").kind).toBe("reaction");
     expect(parseQuickInput("可逆[加热]").latex).toBe("\\overset{\\Delta}{\\rightleftharpoons}");

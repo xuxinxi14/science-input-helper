@@ -32,7 +32,7 @@ export interface QuickInputSuggestion {
   id: string;
   title: string;
   latex: string;
-  source: "template" | "symbol" | "greek";
+  source: "template" | "symbol" | "greek" | "math";
   detail: string;
   outputFormat?: QuickInputOutputFormat;
   replacement?: string;
@@ -196,6 +196,11 @@ export function parseQuickInput(input: string, options: QuickInputOptions = {}):
 
   if (isGreekListQuery(query)) {
     return resolveGreekList(query, source, "希腊字母", greekOptions);
+  }
+
+  const earlyVariableResult = resolveVariableNotation(query, source);
+  if (earlyVariableResult) {
+    return earlyVariableResult;
   }
 
   const greekResult = resolveGreek(query, source, "希腊字母", greekOptions);
@@ -450,6 +455,40 @@ function resolveSymbol(query: string, source: string, label: string): QuickInput
   };
 }
 
+function resolveVariableNotation(query: string, source: string): QuickInputResult | null {
+  if (/^[A-Za-z]$/.test(query)) {
+    return buildResult("math", "变量", source, query, query);
+  }
+
+  const subscriptMatch = query.match(/^([A-Za-z])(\d+)$/);
+  if (!subscriptMatch) {
+    return null;
+  }
+
+  const [, letter, index] = subscriptMatch;
+  const subscript = `${letter}_${formatScriptIndex(index)}`;
+  const superscript = `${letter}^${formatScriptIndex(index)}`;
+
+  return buildResult("math", "变量标注: 下标", source, query, subscript, [
+    {
+      id: `variable-subscript-${query}`,
+      title: "下标",
+      latex: subscript,
+      source: "math",
+      detail: "变量标注",
+      replacement: subscript
+    },
+    {
+      id: `variable-superscript-${query}`,
+      title: "上标",
+      latex: superscript,
+      source: "math",
+      detail: "变量标注",
+      replacement: superscript
+    }
+  ]);
+}
+
 function buildResult(
   kind: QuickInputKind,
   label: string,
@@ -517,6 +556,10 @@ function isComplexChemicalToken(token: string): boolean {
 
   const elementSymbols = formula.match(/[A-Z][a-z]?/g);
   return (elementSymbols?.length ?? 0) >= 2;
+}
+
+function formatScriptIndex(value: string): string {
+  return value.length === 1 ? value : `{${value}}`;
 }
 
 function templateToSuggestion(template: ScienceTemplate): QuickInputSuggestion {
