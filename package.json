@@ -1,6 +1,6 @@
 {
   "name": "science-input-helper",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Input helper for Chinese science notes: chemical formulas, reaction arrows, units, Greek letters, Roman numerals, and lightweight math structures.",
   "main": "main.js",
   "scripts": {

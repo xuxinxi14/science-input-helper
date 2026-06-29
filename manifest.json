@@ -1,7 +1,7 @@
 {
   "id": "science-input-helper",
   "name": "Science Input Helper",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "minAppVersion": "1.5.0",
   "description": "Input helper for Chinese science notes: chemical formulas, reaction arrows, units, Greek letters, Roman numerals, and lightweight math structures.",
   "author": "XinXi Xu",
